@@ -128,27 +128,27 @@ public class KinectPointController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//Debug.Log ("Kinect Point Controller Update Active");
-		//if (detect == true) {
+		Debug.Log ("Kinect Point Controller Update Active");
+		if (detect == true) {
 			StartCoroutine ("WaveSegments");
 			//StartCoroutine ("Armextension");
 			StartCoroutine ("Namaste");
-		//	if (detect == false) {
-		//		yield return new WaitForSeconds (5);
-		//	}
-		//	StartCoroutine ("deinitskel");
-	//		if (detect == false) {
-	//			yield return new WaitForSeconds (5);
-	//		}
-	//	} else {
-			//
-			//StartCoroutine ("initskel");
-			//if (detect == true) {
-			//	yield return new WaitForSeconds (5);
-			//}
-		//}
-		//if(player == -1)
-		//	return;
+			if (detect == false) {
+				yield return new WaitForSeconds (5);
+			}
+			StartCoroutine ("deinitskel");
+			if (detect == false) {
+				yield return new WaitForSeconds (5);
+			}
+		} else {
+			
+			StartCoroutine ("initskel");
+			if (detect == true) {
+				yield return new WaitForSeconds (5);
+			}
+		}
+		if(player == -1)
+			return;
 		//update all of the bones positions
 		if (sw.pollSkeleton())
 		{
@@ -296,16 +296,7 @@ public class KinectPointController : MonoBehaviour {
 
 
 			yield return new WaitForSeconds (1);
-			/*	for (int player = 0; player < Kinect.Constants.NuiSkeletonCount; player++) {
-				if (dw.players [0] ==true ) {
-					flag = 1;
-				}
-			}*/
-			//flag=skeleton.GetComponent<SkeletonWrapper> ().trackedPlayers[0];
-			//Debug.Log ("plyer: " + dw.players [0]);
-			//Debug.Log("tracked player"+flag);
 
-			//	Debug.Log ("Enter Control");
 			if (Wrist_Right.transform.position != null) {
 
 		
@@ -315,7 +306,7 @@ public class KinectPointController : MonoBehaviour {
 						Debug.Log ("Namaste");
 					
 
-						namaste.GetComponent<AudioSource> ().Play ();
+						namaste.GetComponent<AudioSource> ().Play();
 					} else {
 						break;
 					}
@@ -323,9 +314,6 @@ public class KinectPointController : MonoBehaviour {
 				} else {
 					break;
 				}
-
-
-			
 
 
 			} else {
@@ -370,18 +358,7 @@ public class KinectPointController : MonoBehaviour {
 					}
 					//	waveSegment1 = true;
 					//	waveComplete = false;
-				} 
-
-				
-
-
-				//	waveComplete = true;
-
-
-
-				//	waveComplete = true;
-
-
+				}
 
 			}
 		
@@ -407,7 +384,7 @@ public class KinectPointController : MonoBehaviour {
 					flag = 1;
 				}
 			}*/
-			//flag=skeleton.GetComponent<SkeletonWrapper> ().trackedPlayers[0];
+			//flag = skeleton.GetComponent<SkeletonWrapper> ().trackedPlayers[0];
 			//Debug.Log ("plyer: " + dw.players [0]);
 			//Debug.Log("tracked player"+flag);
 
@@ -428,15 +405,6 @@ public class KinectPointController : MonoBehaviour {
 				} else {
 					detect = true;
 				}
-
-
-
-				//	waveComplete = true;
-
-
-
-				//	waveComplete = true;
-
 
 
 			}

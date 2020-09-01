@@ -226,7 +226,7 @@ public class SkeletonWrapper : MonoBehaviour {
 			
 			pointman.gameObject.SetActive (true);
 		}
-		Debug.Log ("Tracked Skeleton 0:" + tracked [0] + "Tracked Skeleton 0:" + tracked [1]);
+
 	}
 	
 }

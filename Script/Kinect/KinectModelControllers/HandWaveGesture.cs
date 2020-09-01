@@ -15,30 +15,28 @@ public class HandWaveGesture : MonoBehaviour {
 	public KinectModelControllerV2 control;
 
 	public int flag=0;
-//	public frameData Reader;
-	//private BodyFrameReader Reader;
-//	public Body[] bodies;
+	public frameData Reader;
+	private BodyFrameReader Reader;
+	public Body[] bodies;
 	private int bodyCount;
 	public bool waveSegment1;
 	public bool waveComplete;
 	public DeviceOrEmulator devOrEmu;
 	private Kinect.KinectInterface kinect;
 
-	//private Kinect.KinectInterface kinect;
-
 	// Use this for initialization
 
 	void Start()
 	{
-	//	kinect = devOrEmu.getKinect();
-	//	 sw=new SkeletonWrapper();
-	//	skeleton=GameObject.Find("SkeletonWrapper");
-	//	StartCoroutine("WaveSegments");
+		kinect = devOrEmu.getKinect();
+		 sw=new SkeletonWrapper();
+		skeleton=GameObject.Find("SkeletonWrapper");
+		StartCoroutine("WaveSegments");
 	}
 
 	void OnApplicationQuit()
 	{
-	/*	if (Reader != null)
+		if (Reader != null)
 		{
 			Reader.Dispose();
 			Reader = null;
@@ -52,12 +50,12 @@ public class HandWaveGesture : MonoBehaviour {
 			}
 
 			Sensor = null;
-		}*/
+		}
 	}
 	// Update is called once per frame
 	void Update () 
 	{
-		/*if (Reader != null)
+		if (Reader != null)
 		{
 			var frame = Reader.AcquireLatestFrame();
 			if (frame != null)
@@ -72,9 +70,9 @@ public class HandWaveGesture : MonoBehaviour {
 				frame.Dispose();
 				frame = null;
 			}
-		}    */
+		}    
 
-	//	WaveSegments ();
+		WaveSegments ();
 	}
 
 
