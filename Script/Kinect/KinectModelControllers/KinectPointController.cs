@@ -20,8 +20,7 @@ public class KinectPointController : MonoBehaviour {
 	public GameObject namaste;
 	public GameObject detectobject;
 	public GameObject deinit;
-	bool flag=true;
-	bool flag1=true;
+
 	//Assignments for a bitmask to control which bones to look at and which to ignore
 	public enum BoneMask
 	{
@@ -111,9 +110,7 @@ public class KinectPointController : MonoBehaviour {
 		if (hello == null) {
 			Debug.Log ("Could not find hello" );
 		}
-	//	AudioSource audio=GetComponent<AudioSource>();
-	//	audio.Play ();
-		//store bones in a list for easier access
+
 		_bones = new GameObject[(int)Kinect.NuiSkeletonPositionIndex.Count] {Hip_Center, Spine, Shoulder_Center, Head,
 			Shoulder_Left, Elbow_Left, Wrist_Left, Hand_Left,
 			Shoulder_Right, Elbow_Right, Wrist_Right, Hand_Right,
@@ -169,41 +166,27 @@ public class KinectPointController : MonoBehaviour {
 			}
 		}
 	}
+
 	IEnumerator WaveSegments()
 	{
-			
-		flag = true;
 		while (flag) {	
-			
-			Debug.Log ("enter while of wave");
-			
+				
 			yield return new WaitForSeconds (1f);
-		/*	for (int player = 0; player < Kinect.Constants.NuiSkeletonCount; player++) {
-				if (dw.players [0] ==true ) {
-					flag = 1;
+
+			if (Wrist_Right.transform.position != null) {
+
+				// Hand above elbow
+				if (Wrist_Right.transform.position.y > Elbow_Right.transform.position.y) {
+					// Hand right of elbow
+					if (Wrist_Right.transform.position.x > Elbow_Right.transform.position.x) {
+						Debug.Log ("Part 1 Wave Occured");
+						
+					} 
 				}
-			}*/
-		//flag=skeleton.GetComponent<SkeletonWrapper> ().trackedPlayers[0];
-		//Debug.Log ("plyer: " + dw.players [0]);
-		//Debug.Log("tracked player"+flag);
-
-		//	Debug.Log ("Enter Control");
-		if (Wrist_Right.transform.position != null) {
-
-			// Hand above elbow
-			if (Wrist_Right.transform.position.y > Elbow_Right.transform.position.y) {
-				// Hand right of elbow
-				if (Wrist_Right.transform.position.x > Elbow_Right.transform.position.x) {
-					Debug.Log ("Part1Wave Occured");
-					//	waveSegment1 = true;
-					//	waveComplete = false;
-				} 
-			}
-			
+				
 				if (Wrist_Right.transform.position.y > Elbow_Right.transform.position.y) {
 					if (Wrist_Right.transform.position.x > Elbow_Right.transform.position.x && Wrist_Left.transform.position.y < Elbow_Left.transform.position.y) {
 						//waveSegment1 = false;
-						Debug.Log ("Part2 of wave");
 							
 						hello.GetComponent<AudioSource> ().Play ();
 					
@@ -213,159 +196,100 @@ public class KinectPointController : MonoBehaviour {
 						break;
 					}
 				}
-						
 
-						//	waveComplete = true;
-
-					
-
-					//	waveComplete = true;
-				 else {
-
-				}
-			
-
-
-		}
-
-
-
-
+			}
 	}
 	}
 
 
 	IEnumerator Armextension()
 	{
-		flag1 = true;	
-		while (flag1) {
 
+		while (true) {
 
 			yield return new WaitForSeconds (1);
-			/*	for (int player = 0; player < Kinect.Constants.NuiSkeletonCount; player++) {
-				if (dw.players [0] ==true ) {
-					flag = 1;
-				}
-			}*/
-			//flag=skeleton.GetComponent<SkeletonWrapper> ().trackedPlayers[0];
-			//Debug.Log ("plyer: " + dw.players [0]);
-			//Debug.Log("tracked player"+flag);
 
-			//	Debug.Log ("Enter Control");
 			if (Wrist_Right.transform.position != null) {
 
 				// Hand above elbow
 				if (Wrist_Right.transform.position.y> Elbow_Right.transform.position.y) {
 					// Hand right of elbow
 					if (Wrist_Left.transform.position.y >Elbow_Left.transform.position.y) {
-						
-							
-								shahrukh.GetComponent<AudioSource> ().Play ();
+					
+							shahrukh.GetComponent<AudioSource> ().Play ();
 					
 							Debug.Log ("Sharukh khan");
-
-						//	waveSegment1 = true;
-						//	waveComplete = false;
-					} else {
-						//waveSegment1 = false;
-					}
 				}
 
-
-				//	waveComplete = true;
-
-
-
-				//	waveComplete = true;
-
-
-
 			}
-
-
-
-
 		}
 	}
 
 
 	IEnumerator Namaste()
-	{
-		flag1 = true;	
-		while (flag1) {
-
+	{	
+		while (true) {
 
 			yield return new WaitForSeconds (1);
 
-			if (Wrist_Right.transform.position != null) {
-
-		
-				if (Wrist_Right.transform.position.y > Elbow_Right.transform.position.y && Wrist_Left.transform.position.y > Elbow_Left.transform.position.y) {
+			if (Wrist_Right.transform.position != null) 
+			{
+				if (Wrist_Right.transform.position.y > Elbow_Right.transform.position.y && Wrist_Left.transform.position.y > Elbow_Left.transform.position.y) 
+				{
 			
-					if (Wrist_Right.transform.position.x < Elbow_Right.transform.position.x && Wrist_Left.transform.position.x > Elbow_Left.transform.position.x) {
-						Debug.Log ("Namaste");
-					
-
+					if (Wrist_Right.transform.position.x < Elbow_Right.transform.position.x && Wrist_Left.transform.position.x > Elbow_Left.transform.position.x) 
+					{
 						namaste.GetComponent<AudioSource> ().Play();
-					} else {
+					} 
+					else 
+					{
 						break;
 					}
 				
-				} else {
+				} 
+				else 
+				{
 					break;
 				}
 
 
-			} else {
+			} 
+			else 
+			{
 				break;
 			}
-
-
-
-
 		}
 	}
 
 
 	IEnumerator initskel()
 	{
-		flag1 = true;	
-		while (true) {
+
+		while (true) 
+		{
 
 			Debug.Log ("initskel");
 			yield return new WaitForSeconds (1f);
-			/*	for (int player = 0; player < Kinect.Constants.NuiSkeletonCount; player++) {
-				if (dw.players [0] ==true ) {
-					flag = 1;
-				}
-			}*/
-			//flag=skeleton.GetComponent<SkeletonWrapper> ().trackedPlayers[0];
-			//Debug.Log ("plyer: " + dw.players [0]);
-			//Debug.Log("tracked player"+flag);
 
-			//	Debug.Log ("Enter Control");
-			if (Wrist_Right.transform.position != null) {
+			if (Wrist_Right.transform.position != null) 
+			{
 				Debug.Log ("wrist found");
 				// Hand above elbow
 			
-				if (Wrist_Right.transform.position.y > Head.transform.position.y && Wrist_Left.transform.position.y > Head.transform.position.y) {
+				if (Wrist_Right.transform.position.y > Head.transform.position.y && Wrist_Left.transform.position.y > Head.transform.position.y) 
+				{
 
-					if (detect == false) {
+					if (detect == false) 
+					{
 						detect = true;
 						detectobject.GetComponent<AudioSource> ().Play ();
 
 						Debug.Log ("Person Detected");
 					}
-					//	waveSegment1 = true;
-					//	waveComplete = false;
+
 				}
 
 			}
-		
-
-
-
-
 		}
 	}
 
@@ -374,44 +298,33 @@ public class KinectPointController : MonoBehaviour {
 
 	IEnumerator deinitskel()
 	{
-		flag1 = true;	
-		while (flag1) {
+		while (true)
+		{
 
 
 			yield return new WaitForSeconds (2);
-			/*	for (int player = 0; player < Kinect.Constants.NuiSkeletonCount; player++) {
-				if (dw.players [0] ==true ) {
-					flag = 1;
-				}
-			}*/
-			//flag = skeleton.GetComponent<SkeletonWrapper> ().trackedPlayers[0];
-			//Debug.Log ("plyer: " + dw.players [0]);
-			//Debug.Log("tracked player"+flag);
 
-			//	Debug.Log ("Enter Control");
-			if (Wrist_Right.transform.position != null) {
+			if (Wrist_Right.transform.position != null) 
+			{
 
 				// Hand above elbow
 
-				if (Wrist_Right.transform.position.y > Head.transform.position.y && Wrist_Left.transform.position.y > Head.transform.position.y) {
+				if (Wrist_Right.transform.position.y > Head.transform.position.y && Wrist_Left.transform.position.y > Head.transform.position.y) 
+				{
 
 						
 					deinit.GetComponent<AudioSource> ().Play ();
 
 					Debug.Log ("Person Deinitialized");
 					detect = false;
-					//	waveSegment1 = true;
-					//	waveComplete = false;
-				} else {
+
+				} 
+				else 
+				{
 					detect = true;
 				}
 
-
 			}
-
-
-
-
 		}
 	}
 }
